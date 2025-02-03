@@ -1,0 +1,23 @@
+{
+  "name": "profileforge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kalsi-Manjot-Singh/ProfileForge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kalsi-Manjot-Singh/ProfileForge/issues"
+  },
+  "homepage": "https://github.com/Kalsi-Manjot-Singh/ProfileForge#readme",
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}
