@@ -1,14 +1,15 @@
 const fs = require("fs");
+const path = require("path");
 
 async function generateProfilesJson(){
   try{
     // An array of file paths
   const filePaths = [
-    "./userProvidedData/names.txt",
-    "./userProvidedData/location.txt",
-    "./userProvidedData/proxy.txt",
-    "./userProvidedData/longitude.txt",
-    "./userProvidedData/latitude.txt"
+    path.join(__dirname, "userProvidedData", "names.txt"),
+    path.join(__dirname, "userProvidedData", "location.txt"),
+    path.join(__dirname, "userProvidedData", "proxy.txt"),
+    path.join(__dirname, "userProvidedData", "longitude.txt"),
+    path.join(__dirname, "userProvidedData", "latitude.txt"),
   ];
 
   // An array of promises that read the files
