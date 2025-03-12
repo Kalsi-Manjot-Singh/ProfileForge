@@ -2,21 +2,36 @@
   {
     "name": "JohnDoe",
     "location": "USA",
-    "proxy": "139.171.237.38:16817:aIB8eFNR0f:jA4HDXbGC7",
+    "proxy": {
+      "host": "139.171.237.38",
+      "port": "16817",
+      "username": "aIB8eFNR0f",
+      "password": "jA4HDXbGC7"
+    },
     "longitude": "40.712776",
     "latitude": "-74.005974"
   },
   {
     "name": "JaneDoe",
     "location": "Canada",
-    "proxy": "152.32.105.12:50432:username:password",
+    "proxy": {
+      "host": "152.32.105.12",
+      "port": "50432",
+      "username": "username",
+      "password": "password"
+    },
     "longitude": "-79.383184",
     "latitude": "43.653225"
   },
   {
     "name": "User123",
     "location": "UK",
-    "proxy": "103.55.123.29:23432:user:pass",
+    "proxy": {
+      "host": "103.55.123.29",
+      "port": "23432",
+      "username": "user",
+      "password": "pass"
+    },
     "longitude": "51.507351",
     "latitude": "-0.127758"
   }

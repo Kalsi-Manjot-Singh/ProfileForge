@@ -49,10 +49,11 @@ const processedData = fileContents.map((fileData) => {
   
   // Populating the profiles array from processedData
   for(let i = 0; i < totalProfiles; i++) {
+    const [host, port, username, password] = proxies[i].split(":");
     profiles.push({
       name: names[i],
       location: locations[i],
-      proxy: proxies[i],
+      proxy: { host, port, username, password },
       longitude: longitudes[i],
       latitude: latitudes[i],
     });
@@ -60,7 +61,7 @@ const processedData = fileContents.map((fileData) => {
 
   // Writing to profiles.json
   await fs.promises.writeFile(path.join(__dirname, "userProvidedData", "profiles.json"), JSON.stringify(profiles, null, 2), "utf-8");
-  console.log("Profiles successfully saved to profiles.json!");
+  console.log(`Saved ${profiles.length} to profiles.json!`);
 
   } catch(error){
     console.error("Error creating profiles.json ", error);
