@@ -69,4 +69,4 @@ const processedData = fileContents.map((fileData) => {
 
 }
 
-generateProfilesJson();
+module.exports = generateProfilesJson;

@@ -1,6 +1,7 @@
 // External library imports
 const axios = require("axios");
 const express = require("express");
+const generateProfilesJson = require("./profileJsonGen"); // Import function
 
 const app = express();
 const PORT = 3000; // Port for the server to listen to.
@@ -11,6 +12,11 @@ app.use((req, res, next) => {
   console.log(` ${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
+
+// Run profile generation before server starts
+(async () => {
+  await generateProfilesJson();
+})();
 
 // Routes
 app.get("/profiles", async (req, res) => {
