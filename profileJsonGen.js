@@ -13,19 +13,24 @@ async function generateProfilesJson(){
   ];
 
   // An array of promises that read the files
-  const fileReadPromises = filePaths.map(path => fs.promises.readFile(path, "utf-8"));
+  const fileReadPromises = filePaths.map(path => 
+    fs.promises.access(path, fs.constants.R_OK) //checking if files exist and are readable
+    .then(() =>  fs.promises.readFile(path, "utf-8"))
+    .catch(() => {
+      console.error(`Warning: ${path} does not exist or is not readable.`);
+      return "";  // Return an empty string instead of failing
+    })
+);
   
   // Reading all the files concurently using Promises.all
   const fileContents = await Promise.all(fileReadPromises);
 
-  // Processing each files content
-  const processedData = fileContents.map((fileData) => {
-    return fileData.split("\n").reduce( (acc,line) => {
-      const trimmed = line.trim();
-      if (trimmed) acc.push(trimmed);
-      return acc;
-    }, []);
-  });
+// Process each file's content, ensuring empty files return an empty array
+const processedData = fileContents.map((fileData) => {
+  return fileData
+    ? fileData.split("\n").map(line => line.trim()).filter(Boolean)  // Remove empty lines
+    : [];  // Handle missing files by returning an empty array
+});
 
   // Destructuring the processedData array
   const [names,locations,proxies,longitudes,latitudes] = processedData;
@@ -54,7 +59,7 @@ async function generateProfilesJson(){
   }
 
   // Writing to profiles.json
-  await fs.promises.writeFile("./profiles.json", JSON.stringify(profiles, null, 2), "utf-8");
+  await fs.promises.writeFile(path.join(__dirname, "userProvidedData", "profiles.json"), JSON.stringify(profiles, null, 2), "utf-8");
   console.log("Profiles successfully saved to profiles.json!");
 
   } catch(error){
